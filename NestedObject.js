@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const arrayString = ['Cat','Dog','Bird'];
-const arrayObjects = [{example : 'example'}, {example : 'example'}];
+const arrayObjects = [{example : 'example'}, {example : 'example2'}, {example : 'example3'}];
 
 const userInput = {
     personalInfo : {
@@ -9,7 +9,7 @@ const userInput = {
         city : 'Test',
         state : 'z2'
     },
-    preferences : arrayString
+    preferences : arrayObjects
 };
 
 const personalInfoSchema = Joi.object().keys({
@@ -18,7 +18,9 @@ const personalInfoSchema = Joi.object().keys({
     state : Joi.string().trim().length(2).required(),
 });
 
-const preferencesSchema = Joi.array().items(Joi.string());
+const preferencesSchema = Joi.array().items(Joi.object().keys({
+    example : Joi.string().required()
+}));
 
 const schema = Joi.object().keys({
     personalInfo : personalInfoSchema,
