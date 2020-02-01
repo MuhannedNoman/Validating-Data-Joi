@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Serving static files using Express.js</h1>
-    <form action="/" method="POST" id="form">
+    <form action="/" method="POST">
         <label for="email">Email</label>
         <input type="email" name="email">
 
@@ -17,27 +17,5 @@
 
         <input type="submit" value="Submit">
     </form>
-
-    <script
-			  src="https://code.jquery.com/jquery-3.4.1.min.js"
-			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-              crossorigin="anonymous"></script>
-    <script>
-        $(document).ready(()=>{
-            $('#form').submit((e)=>{
-                e.preventDefault();
-                $.ajax({
-                    url : '/',
-                    type : 'POST',
-                    contentType : 'application/json',
-                    data : JSON.stringify($('#form').serializeArray()),
-                    success : (response) => {
-                        console.log('Successfully');
-                        console.log(response);
-                    }                
-                })
-            })
-        });
-    </script>
 </body>
 </html>
